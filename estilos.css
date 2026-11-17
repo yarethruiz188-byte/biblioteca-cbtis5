@@ -1,0 +1,299 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background-color: #800020; /* Color guinda institucional */
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+header p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+#menu-boton {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+nav {
+    background-color: #4a0e17;
+    padding: 0.5rem;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+.seccion {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #800020;
+    border-bottom: 2px solid #800020;
+    padding-bottom: 5px;
+}
+
+.imagenes-container {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.imagen-banner {
+    width: 100%;
+    max-width: 400px;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#buscar-libro, #archivo-excel {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.mensaje-busqueda, .estado-excel {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Panel de Botón Guardar Cambios */
+.panel-guardar {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.panel-guardar p {
+    margin: 0 0 10px 0;
+    color: #856404;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.btn-guardar-fijo {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-guardar-fijo:hover {
+    background-color: #218838;
+}
+
+.oculto {
+    display: none;
+}
+
+.grupo-estante {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.grupo-estante h3 {
+    margin-top: 0;
+    color: #4a0e17;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.libro {
+    background: white;
+    border: 1px solid #e1e1e1;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.libro .categoria {
+    display: inline-block;
+    background-color: #800020;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.libro h4 {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.libro p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.botones-tarjeta {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-editar, .btn-eliminar {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-editar {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.btn-editar:hover {
+    background-color: #e0a800;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-eliminar:hover {
+    background-color: #bd2130;
+}
+
+.btn-restaurar {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-restaurar:hover {
+    background-color: #5a6268;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input, form select, form textarea {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button.btn-accion {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #800020;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+form button.btn-accion:hover {
+    background-color: #4a0e17;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #222;
+    color: white;
+    margin-top: 30px;
+}
+
+.creditos {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #444;
+}
+
+.creditos p {
+    margin: 3px 0;
+    color: #ffcc00;
+}

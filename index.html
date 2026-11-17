@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Escolar - CBTis 5</title>
+    <link rel="stylesheet" href="estilos.css">
+    <!-- Librería SheetJS para leer archivos Excel en el navegador -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+    <!-- Encabezado Principal -->
+    <header>
+        <div class="logo-container">
+            <h1>CBTis 5</h1>
+            <p>Centro de Bachillerato Tecnológico industrial y de servicios No. 5</p>
+        </div>
+        <h2>Biblioteca Escolar</h2>
+        <button id="menu-boton" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </header>
+
+    <!-- Menú de Navegación -->
+    <nav id="menu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#excel-seccion">Conectar Excel</a></li>
+            <li><a href="#agregar-seccion">Gestionar Inventario</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#prestamos">Préstamos</a></li>
+            <li><a href="#horarios">Horarios y Reglas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="seccion">
+        <h2>Bienvenido a la Biblioteca del CBTis 5</h2>
+        <p>Un espacio dedicado al aprendizaje, la investigación y el fomento a la lectura para toda nuestra comunidad estudiantil y docente.</p>
+        <div class="imagenes-container">
+            <img src="d:\Biblioteca_Cbtis5\ca4b74f2-3b4f-41d8-935c-524fa7829c9a.jpg" alt="Instalaciones de la biblioteca del CBTis 5" class="imagen-banner">
+            <img src="d:\Biblioteca_Cbtis5\a188bae9-2975-4e27-b297-ff57b7e79c0b.jpg" alt="Instalaciones de la biblioteca del CBTis 5" class="imagen-banner">
+            <img src="d:\Biblioteca_Cbtis5\6b51457a-5f6b-442f-9111-d00a14438de6.jpg" alt="Instalaciones de la biblioteca del CBTis 5" class="imagen-banner">
+        </div>
+    </section>
+
+    <!-- Sección Conexión con Excel -->
+    <section id="excel-seccion" class="seccion">
+        <h2>Conexión de Libros mediante Excel</h2>
+        <p>Sube tu archivo de Excel con el inventario completo para cargarlos automáticamente:</p>
+        <input type="file" id="archivo-excel" accept=".xlsx, .xls">
+        <p id="estado-excel" class="estado-excel">Esperando archivo de Excel...</p>
+    </section>
+
+    <!-- Sección para Agregar Libros Manualmente -->
+    <section id="agregar-seccion" class="seccion">
+        <h2>Agregar o Modificar Inventario</h2>
+        <p>Utiliza este formulario para dar de alta un libro nuevo:</p>
+        <form id="form-agregar-libro">
+            <label for="nuevo-estante">Número de Estante (1 al 6):</label>
+            <input type="number" id="nuevo-estante" min="1" max="6" required placeholder="Ej. 1">
+
+            <label for="nueva-materia">Materia o Categoría:</label>
+            <input type="text" id="nueva-materia" required placeholder="Ej. Matemáticas">
+
+            <label for="nuevo-titulo">Título del Libro:</label>
+            <input type="text" id="nuevo-titulo" required placeholder="Ej. Álgebra Moderna">
+
+            <label for="nuevo-autor">Autor:</label>
+            <input type="text" id="nuevo-autor" required placeholder="Ej. Antonio Ruiz">
+
+            <label for="nueva-cantidad">Cantidad de Ejemplares:</label>
+            <input type="number" id="nueva-cantidad" min="1" required placeholder="Ej. 5">
+
+            <button type="submit" class="btn-accion">➕ Agregar Libro al Catálogo</button>
+        </form>
+        <button type="button" id="btn-restaurar" class="btn-restaurar">🔄 Restaurar Inventario Inicial</button>
+    </section>
+
+    <!-- Sección Catálogo Organizado en 6 Estantes -->
+    <section id="catalogo" class="seccion">
+        <h2>Catálogo de Libros</h2>
+        <p>Busca libros disponibles por título, materia o autor:</p>
+        
+        <input type="text" id="buscar-libro" placeholder="🔍 Escribe el nombre del libro o materia...">
+        <p id="mensaje-busqueda" class="mensaje-busqueda">Explora las materias organizadas en los seis estantes.</p>
+        
+        <!-- Panel de Botón Guardar Cambios por Eliminación -->
+        <div id="panel-guardar-cambios" class="panel-guardar oculto">
+            <p>⚠️ Has realizado modificaciones o eliminado libros pendientes de guardar.</p>
+            <button type="button" id="btn-guardar-cambios" class="btn-guardar-fijo">💾 Guardar cambios permanentemente</button>
+        </div>
+
+        <!-- Estante 1 -->
+        <div class="grupo-estante" data-estante-id="1">
+            <h3>Estante 1: Matemáticas y Ciencias Exactas</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+
+        <!-- Estante 2 -->
+        <div class="grupo-estante" data-estante-id="2">
+            <h3>Estante 2: Ciencias Experimentales</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+
+        <!-- Estante 3 -->
+        <div class="grupo-estante" data-estante-id="3">
+            <h3>Estante 3: Programación y Tecnologías</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+
+        <!-- Estante 4 -->
+        <div class="grupo-estante" data-estante-id="4">
+            <h3>Estante 4: Humanidades y Ciencias Sociales</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+
+        <!-- Estante 5 -->
+        <div class="grupo-estante" data-estante-id="5">
+            <h3>Estante 5: Contabilidad y Administración</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+
+        <!-- Estante 6 -->
+        <div class="grupo-estante" data-estante-id="6">
+            <h3>Estante 6: Literatura y Lengua</h3>
+            <div class="catalogo-grid"></div>
+        </div>
+    </section>
+
+    <!-- Sección Requisitos de Préstamo -->
+    <section id="prestamos" class="seccion">
+        <h2>Requisitos para Préstamo de Libros</h2>
+        <ul>
+            <li>Presentar credencial escolar vigente del CBTis 5.</li>
+            <li>Estar inscrito en el ciclo escolar actual.</li>
+            <li>No tener adeudos ni sanciones pendientes de libros anteriores.</li>
+            <li>Llenar el formato de solicitud en el módulo de atención.</li>
+        </ul>
+    </section>
+
+    <!-- Sección Horarios y Reglas -->
+    <section id="horarios" class="seccion">
+        <h2>Horarios de Atención</h2>
+        <p><strong>Lunes a Viernes:</strong> 7:00 AM - 3:00 PM</p>
+
+        <h2>Reglas de Uso</h2>
+        <ul>
+            <li>Mantener silencio en las áreas de estudio.</li>
+            <li>No ingresar con alimentos ni bebidas.</li>
+            <li>Cuidar el material bibliográfico e instalaciones.</li>
+            <li>Guardar los celulares en modo silencioso.</li>
+        </ul>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="seccion">
+        <h2>Contacto y Dudas</h2>
+        <form id="formulario-contacto">
+            <label for="nombre-contacto">Nombre completo:</label>
+            <input type="text" id="nombre-contacto" required placeholder="Tu nombre">
+
+            <label for="correo-contacto">Correo electrónico:</label>
+            <input type="email" id="correo-contacto" required placeholder="correo@ejemplo.com">
+
+            <label for="tema-contacto">Tema o Asunto:</label>
+            <select id="tema-contacto" required>
+                <option value="">Selecciona una opción</option>
+                <option value="prestamo">Préstamo de libro</option>
+                <option value="duda">Duda general</option>
+            </select>
+
+            <label for="mensaje-contacto">Mensaje o Consulta:</label>
+            <textarea id="mensaje-contacto" rows="4" required placeholder="¿Qué libro o información necesitas?"></textarea>
+
+            <button type="submit">Enviar Mensaje</button>
+            <p id="resultado-contacto"></p>
+        </form>
+    </section>
+
+    <!-- Pie de página con Nombres y Conexión Integrada -->
+    <footer>
+        <p>&copy; 2026 CBTis 5 - Todos los derechos reservados.</p>
+        <div class="creditos">
+            <p><strong>Desarrollado por:</strong></p>
+            <p>• Antonio Flores Josajanny Guadalupe</p>
+            <p>• Ruiz Hernández Mersy Yareth</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
